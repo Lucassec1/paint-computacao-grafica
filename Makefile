@@ -1,0 +1,12 @@
+CC = gcc
+
+SRC = src/main.c src/render.c src/input.c
+
+LIBS = -lGL -lGLU -lglut
+
+all:
+	$(CC) $(SRC) -o app $(LIBS)
+	./app
+
+run:
+	./app
