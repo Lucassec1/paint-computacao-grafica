@@ -1,61 +1,55 @@
 #include <GL/glut.h>
+#include "paint.h"
 
-void drawPoint()
+void drawShape(Shape shape)
 {
-    glPointSize(10.0);
+    glColor3f(
+        shape.color.r,
+        shape.color.g,
+        shape.color.b);
 
-    glBegin(GL_POINTS);
+    switch (shape.tool)
+    {
+    case TOOL_POINT:
 
-        glVertex2f(0.0, 0.0);
+        glPointSize(8);
 
-    glEnd();
-}
+        glBegin(GL_POINTS);
 
-void drawLine()
-{
-    glBegin(GL_LINES);
+        glVertex2f(
+            shape.points[0].x,
+            shape.points[0].y);
 
-        glVertex2f(-0.5, 0.0);
-        glVertex2f(0.5, 0.0);
+        glEnd();
 
-    glEnd();
-}
+        break;
 
-void drawSquare()
-{
-    glBegin(GL_QUADS);
+    case TOOL_LINE:
 
-        glVertex2f(-0.2, -0.2);
-        glVertex2f(0.2, -0.2);
-        glVertex2f(0.2, 0.2);
-        glVertex2f(-0.2, 0.2);
+        glBegin(GL_LINES);
 
-    glEnd();
-}
+        glVertex2f(
+            shape.points[0].x,
+            shape.points[0].y);
 
-void drawPolygon()
-{
-    glBegin(GL_POLYGON);
+        glVertex2f(
+            shape.points[1].x,
+            shape.points[1].y);
 
-        glVertex2f(-0.2, -0.2);
-        glVertex2f(0.2, -0.2);
-        glVertex2f(0.3, 0.1);
-        glVertex2f(0.0, 0.3);
-        glVertex2f(-0.3, 0.1);
+        glEnd();
 
-    glEnd();
+        break;
+    }
 }
 
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glColor3f(0.0, 0.0, 0.0);
-
-    drawPoint();
-    drawLine();
-    drawSquare();
-    drawPolygon();
+    for (int i = 0; i < totalShapes; i++)
+    {
+        drawShape(shapes[i]);
+    }
 
     glFlush();
 }

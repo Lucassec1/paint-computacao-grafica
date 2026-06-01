@@ -1,6 +1,9 @@
 CC = gcc
 
-SRC = src/main.c src/render.c src/input.c
+SRC = src/main.c \
+      src/render.c \
+      src/input.c \
+      src/paint.c
 
 LIBS = -lGL -lGLU -lglut
 
