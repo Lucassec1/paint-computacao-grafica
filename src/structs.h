@@ -8,7 +8,9 @@ typedef enum
 {
     TOOL_POINT,
     TOOL_LINE,
-    TOOL_POLYGON
+    TOOL_SQUARE,
+    TOOL_POLYGON,
+    TOOL_SELECTION
 
 } Tool;
 
