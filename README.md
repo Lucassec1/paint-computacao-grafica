@@ -32,12 +32,18 @@ paint-computacao-grafica/
 │   ├── paint.c
 │   ├── selection.c
 │   ├── file.c
+<<<<<<< HEAD
 │   ├── transformacoes.c
+=======
+>>>>>>> 1feeb3e (1.0.0)
 │   ├── globals.h
 │   ├── paint.h
 │   ├── selection.h
 │   ├── structs.h
+<<<<<<< HEAD
 │   ├── transformacoes.h
+=======
+>>>>>>> 1feeb3e (1.0.0)
 │   └── file.h
 │
 ├── Makefile

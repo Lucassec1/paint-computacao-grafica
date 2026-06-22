@@ -7,10 +7,14 @@
 
 void drawShape(Shape shape, int selected)
 {
-    glColor3f(
-        shape.color.r,
-        shape.color.g,
-        shape.color.b);
+    if (selected) {
+        glColor3f(1, 0.9, 0);
+    } else {
+        glColor3f(
+            shape.color.r,
+            shape.color.g,
+            shape.color.b);
+    }
 
     switch (shape.tool) {
         case TOOL_POINT:
