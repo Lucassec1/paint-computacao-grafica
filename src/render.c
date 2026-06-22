@@ -79,22 +79,6 @@ void drawShape(Shape shape, int selected)
 
             glEnd();
 
-            if (selected) {
-                glColor3f(1, 0.4, 0);
-                glLineWidth(2.0f);
-                glBegin(GL_LINE_LOOP);
-
-                for (int i = 0; i < shape.totalPoints; i++)
-                {
-                    glVertex2f(
-                        shape.points[i].x,
-                        shape.points[i].y);
-                }
-
-                glEnd();
-                glLineWidth(1);
-            }
-
             break;
 
         case TOOL_SELECTION:
