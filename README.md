@@ -8,6 +8,8 @@ O objetivo do projeto é criar um mini Paint com funcionalidades básicas de des
 - Linhas
 - Quadrados
 - Polígonos
+- Seleção e transformações geométricas
+- Animação
 - Interação com mouse e teclado
 
 ---
@@ -30,10 +32,12 @@ paint-computacao-grafica/
 │   ├── paint.c
 │   ├── selection.c
 │   ├── file.c
+│   ├── transformacoes.c
 │   ├── globals.h
 │   ├── paint.h
 │   ├── selection.h
 │   ├── structs.h
+│   ├── transformacoes.h
 │   └── file.h
 │
 ├── Makefile
@@ -206,10 +210,14 @@ O projeto utiliza:
 - Eventos de teclado
 - Eventos de mouse
 - Renderização de primitivas
+- Matrizes de transformação (translação, rotação, escala, reflexão, cisalhamento)
+- Algoritmos de seleção (ponto, linha e área)
 
 ---
 
-# 🎮 Controles Iniciais
+# 🎮 Controles
+
+## Ferramentas de desenho
 
 | Tecla | Função |
 |---|---|
@@ -217,11 +225,46 @@ O projeto utiliza:
 | L | ferramenta linha |
 | Q | ferramenta quadrado |
 | G | ferramenta polígono (clique para adicionar vértices, ENTER para fechar) |
+| X | entra no modo seleção |
 | C | carregar desenho salvo (e entra em modo seleção) |
-| X | Entra no modo seleção |
-| S | salvar desenho |
+| W | salvar desenho |
 | Delete / Backspace | apagar shape selecionado (no modo seleção) |
 | ESC | salvar e sair |
+
+## Seleção e arrasto (modo seleção, tecla X ou C)
+
+| Ação | Função |
+|---|---|
+| Clique do mouse | seleciona o shape clicado |
+| Clique + arrastar | move (translada) o shape selecionado |
+
+## Transformações geométricas (aplicadas no shape selecionado)
+
+| Tecla | Função |
+|---|---|
+| R | rotaciona +5° |
+| E | rotaciona -5° |
+| A | aumenta escala |
+| D | diminui escala |
+| 0 | reflexão no eixo X |
+| 1 | reflexão no eixo Y |
+| 2 | cisalhamento em X (+) |
+| 3 | cisalhamento em X (-) |
+| 4 | cisalhamento em Y (+) |
+| 5 | cisalhamento em Y (-) |
+| 6 | translação para a direita |
+| 7 | translação para a esquerda |
+| 8 | translação para cima |
+| 9 | translação para baixo |
+
+> ⚠️ As teclas de transformação só têm efeito se houver um shape selecionado (modo seleção ativo e algum objeto clicado).
+
+## Animação
+
+| Ação | Função |
+|---|---|
+| Botão direito do mouse (segurar) | "ímã" — todos os objetos são atraídos para a posição do cursor |
+| Soltar botão direito | os objetos retornam à posição original |
 
 ---
 
@@ -236,6 +279,7 @@ O projeto utiliza:
 | glColor3f | definir cor |
 | glutMouseFunc | capturar mouse |
 | glutKeyboardFunc | capturar teclado |
+| glutTimerFunc | controlar a animação |
 
 ---
 
@@ -266,12 +310,8 @@ Além de criar um Paint simples, o projeto busca praticar:
 
 - Seleção de cores
 - Ferramenta borracha
-- Arrastar objetos
-- Interface gráfica
-- Salvar desenho
-- Carregar desenho
+- Interface gráfica (toolbar com ícones)
 - Zoom
-- Múltiplos polígonos
 
 ---
 
@@ -299,10 +339,4 @@ git checkout -b feature/nome-da-feature
 git add .
 git commit -m "feat: descrição da alteração"
 git push
-```
-
----
-
-# 📄 Licença
-
-Projeto acadêmico para fins educacionais.
+```j
